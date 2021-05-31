@@ -1,0 +1,34 @@
+
+
+
+
+<div class="col-sm-12 col-md-8 col-lg-5 px-5 px-sm-0 mx-auto">
+  <h2>User info</h2>
+
+  <div class="text-danger">
+    <% if @user.errors.any? %>
+    <%= @user.errors.count %> 件のエラーが発生しましたerror
+    <% @user.errors.full_messages.each do |message| %>
+      <div><%= message %></div>
+    <% end %>
+    <% end %>
+  </div>
+
+  <%= form_with model:@user, local:true do |t| %>
+  <div class="form-group">
+    <lable for="user_name">Name</lable><br/>
+    <%= t.text_field :name, class:"form-control name" %>
+  </div>
+  <div class="form-group">
+    <lable for="user_image">Image</lable>
+    <%= t.attachment_field :profile_image, class:"form-control-file user_image" %>
+  </div>
+  <div class="form-group">
+    <lable for="user_introductione">Introduction</lable><br/>
+    <%= t.text_area :introduction, class:"form-control introduction" %>
+  </div>
+  <div class="form-group">
+    <%= t.submit "Update User", class:"btn btn-secondary" %>
+  </div>
+  <% end %>
+</div>
